@@ -1,0 +1,219 @@
+/* GESTAO/STATIC/CSS/STYLE.CSS - VERSÃO FINAL E CONSOLIDADA */
+
+:root {
+    --primary-color: #e8672f;
+    --dark-bg: #121212;
+    --dark-card: #1e1e1e;
+    --dark-gray: #343a40;
+    --white-color: #ffffff;
+    --dark-text: #e0e0e0;
+    --dark-border: #333333;
+    --text-color: #000000;
+    --border-color: #ccc;
+    --link-color: #a9a9a9;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+body.sidebar-open {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   1. ESTRUTURA PRINCIPAL (SIDEBAR E CONTEÚDO)
+   ========================================================================== */
+
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--dark-gray);
+    color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 2rem 2.5rem;
+    margin-left: 260px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* --- Componentes da Sidebar --- */
+.sidebar-header {
+    padding: 1.5rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.sidebar-header h2 {
+    color: var(--primary-color);
+    margin: 0;
+}
+.sidebar-nav {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    flex-grow: 1;
+}
+.sidebar-nav li a {
+    color: var(--link-color);
+    text-decoration: none;
+    display: block;
+    padding: 0.9rem 1.5rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.sidebar-nav li a:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+.sidebar-footer {
+    padding: 1.5rem;
+    text-align: center;
+}
+.sidebar-footer .btn {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. BOTÃO DE MENU E RESPONSIVIDADE
+   ========================================================================== */
+
+.menu-btn {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background: var(--dark-gray);
+    color: var(--white-color);
+    border: 1px solid var(--dark-border);
+    font-size: 1.5rem;
+    padding: 0.5rem 0.9rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+@media (max-width: 992px) {
+    .menu-btn {
+        display: block;
+    }
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar.active {
+        transform: translateX(0);
+        box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    }
+    .content {
+        margin-left: 0;
+        padding-top: 5rem;
+    }
+}
+
+/* ==========================================================================
+   3. PÁGINAS INDEPENDENTES (LOGIN, LANDING PAGE, CLIENT DASHBOARD)
+   ========================================================================== */
+
+/* --- Landing Page --- */
+.landing-body-v2 { background-image: url('../img/background.png'); background-size: cover; background-position: center center; background-attachment: fixed; }
+.landing-overlay { width: 100%; height: 100vh; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; padding: 1rem; box-sizing: border-box; }
+.landing-content-box { background-color: rgba(18, 18, 18, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 2.5rem 3rem; border-radius: 12px; max-width: 650px; width: 100%; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); }
+.logo-container img { max-width: 250px; height: auto; border-radius: 20px; }
+.company-description { font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; }
+.contact-info { font-size: 1rem; line-height: 1.6; color: #ccc; margin-bottom: 2.5rem; }
+.btn-access { padding: 1rem 2.5rem; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; border-radius: 50px; }
+
+/* --- Login Pages --- */
+.login-container { display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--dark-bg); }
+.login-box {
+    background: var(--white-color); /* Caixa de login branca */
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+.login-box h2, .login-box p, .login-box label {
+    color: var(--text-color); /* Texto preto */
+}
+
+/* --- Client Dashboard --- */
+.client-dashboard-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.client-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--dark-border); }
+.client-header h1 { color: var(--primary-color); margin: 0; }
+.client-header span { color: #aaa; }
+.documents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.doc-card { background-color: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 8px; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+.doc-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.doc-card-header { padding: 1.5rem; border-bottom: 1px solid var(--dark-border); }
+.doc-card-header h3 { margin: 0; color: var(--white-color); }
+.doc-card-body { padding: 1.5rem; flex-grow: 1; }
+.doc-card-body p { margin: 0; color: #aaa; }
+.doc-card-footer { padding: 1.5rem; background-color: rgba(0,0,0,0.2); border-top: 1px solid var(--dark-border); }
+.doc-card-footer .btn { width: 100%; box-sizing: border-box; }
+
+/* ==========================================================================
+   4. COMPONENTES GERAIS (BOTÕES, CARDS, TABELAS)
+   ========================================================================== */
+
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--dark-border); }
+.header h1 { color: var(--white-color); }
+.card { background: var(--dark-card); padding: 2rem; border-radius: 8px; margin-bottom: 1.5rem; }
+.table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+.table th, .table td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--dark-border); text-align: left; vertical-align: middle; }
+.table th { background-color: #2a2a2a; font-weight: 600; }
+.table tr:hover td { background-color: #2c2c2c; }
+.table-responsive-wrapper { overflow-x: auto; }
+.actions { white-space: nowrap; }
+
+.btn { padding: 0.6rem 1.2rem; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.2s ease; display: inline-block; text-align: center; }
+.btn-primary { background-color: var(--primary-color); color: var(--white-color); }
+.btn-primary:hover { background-color: #d4561b; }
+.btn-secondary { background-color: #6c757d; color: var(--white-color); }
+.btn-secondary:hover { background-color: #5a6268; }
+.btn-danger { background-color: #dc3545; color: var(--white-color); }
+.btn-danger:hover { background-color: #c82333; }
+
+/* Estilos de Formulário */
+.form-group {
+    margin-bottom: 1.5rem; /* Aumenta o espaçamento entre os campos e o botão */
+}
+.form-control {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: var(--white-color); /* Padrão: fundo branco */
+    color: var(--text-color); /* Padrão: texto preto */
+}
+.form-control:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 2px rgba(232, 103, 47, 0.25); }
+
+/* Regra específica para formulários dentro do painel de admin escuro */
+.content .form-control {
+    background-color: var(--dark-card); /* Fundo cinza escuro */
+    color: var(--dark-text);           /* Texto claro */
+    border: 1px solid var(--dark-border);
+}
+
+@media (max-width: 768px) {
+    .content { padding: 1rem; padding-top: 6rem; }
+}
